@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 56bf5061d0d364e31b7bcb7277eef0fd
+timeCreated: 1520593253
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mixer: {fileID: 24100000, guid: fcb8f4aeab30d47e69bb1d19c65138ea, type: 2}
+  - bgmAudioSource: {instanceID: 0}
+  - sfxAudioSource: {instanceID: 0}
+  - voiceAudioSource: {instanceID: 0}
+  - bgmGO: {instanceID: 0}
+  - sfxGO: {instanceID: 0}
+  - voiceGO: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
