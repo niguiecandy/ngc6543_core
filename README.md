@@ -1,1 +1,1 @@
-ngc6543_core
+# NGC6543_Core

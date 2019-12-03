@@ -1,0 +1,15 @@
+{
+	"name": "com.ngc6543.core",
+	"version": "0.1.0",
+	"displayName": "NGC6543 Core",
+	"description": "NGC6543 Core package",
+	"unity": "2017.1",
+	"dependency": {},
+	"keywords": [
+		"util"
+	],
+	"author": {
+		"name": "Chaehyeok Lim",
+		"email": "ngc6543@me.com"
+	}
+}

@@ -1,0 +1,19 @@
+{
+    "name": "NGC6543.Core.Tests.Editor",
+    "references": [
+        "NGC6543.Core.Editor",
+        "NGC6543.Core"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

@@ -1,0 +1,16 @@
+{
+    "name": "NGC6543.Core.Editor",
+    "references": [
+        "GUID:493a61d8917914cab9573f50ced53a87"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
