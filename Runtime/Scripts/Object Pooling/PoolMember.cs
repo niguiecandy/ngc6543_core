@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolMember : MonoBehaviour
+public abstract class PoolMember : MonoBehaviour
 {	
 	[Header("Pool Member info")]
 	
@@ -30,30 +30,73 @@ public class PoolMember : MonoBehaviour
 	/// </summary>
 	/// <value></value>
 	public bool IsAvailable{ get{ return _isAvailable; } }
-	
+
 	//--------------------------------------------------- 
-	
-	public virtual void InitPoolMember(int poolIndex)
+
+	/// <summary>
+	/// Invoked once by PoolManager when this instance was created.
+	/// </summary>
+	/// <param name="poolIndex"></param>
+	public void InitPoolMember(int poolIndex)
 	{
 		// _manager = manager;
 		_poolIndex = poolIndex;
 		_isPoolMember = true;
 		_isAvailable = true;
+		OnEnlistedToPool();
 	}
-	
+
+
 	/// <summary>
-	/// Called when this instance is used by PoolManager.
+	/// Invoked by PoolManager when this instance is spawned.
 	/// </summary>
-	public virtual void Spawn()
+	public void Spawn()
 	{
 		_isAvailable = false;
+		OnSpawn();
 	}
+	
 	
 	/// <summary>
 	/// Call when this instance is no longer needed.
 	/// </summary>
-	public virtual void ReturnToPool()
+	public void ReturnToPool()
 	{
 		_isAvailable = true;
+		OnReturnedToPool();
 	}
+	
+	
+	/// <summary>
+	/// Invoked by PoolManager when this instance is removed from a pool.
+	/// </summary>
+	public void RemoveFromPool()
+	{
+		_isPoolMember = false;
+		OnRemovedFromPool();
+	}
+	
+	
+	/// <summary>
+	/// Should implement what to do when this instance has been enlisted to a pool.
+	/// </summary>
+	protected abstract void OnEnlistedToPool();
+	
+	
+	/// <summary>
+	/// Should implement what to do when this instance has been spawned.
+	/// </summary>
+	protected abstract void OnSpawn();
+	
+	
+	/// <summary>
+	/// Should implement what to do when this instance has returned to pool.
+	/// </summary>
+	protected abstract void OnReturnedToPool();
+	
+	
+	/// <summary>
+	/// Should implement what to do when this instance is removed from pool.
+	/// </summary>
+	protected abstract void OnRemovedFromPool();
 }
