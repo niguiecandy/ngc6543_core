@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NGC6543;
+using StackableDecorator;
 
 
 public class PFXMember : PoolMember
@@ -15,6 +16,11 @@ public class PFXMember : PoolMember
 	[SerializeField] bool _playOnSpawn = true;
 	
 	[Header("SFX")]
+	
+	[HelpBox("Sound Effect for this Particle Effect.\n" +
+		"If the Particle System is looping, the Sound Effect will also loop. The sync between PFX and SFX may incorrect. Please manually sync them at the moment."
+		, below = false)
+	, StackableField]
 	
 	[Tooltip("If true, SFX will be automatically played when the ParticleSystem is played.")]
 	[SerializeField] bool _playSFX = false;
@@ -43,6 +49,7 @@ public class PFXMember : PoolMember
 		_particleSystem = GetComponent<ParticleSystem>();
 	}
 	
+	
 	void Awake()
 	{
 		InitializeParticleSystem();
@@ -55,16 +62,15 @@ public class PFXMember : PoolMember
 	//--------------------------------------------------- POOLMEMBER
 	#region  PoolMember
 	
-	public override void InitPoolMember(int poolIndex)
+	protected override void OnEnlistedToPool()
 	{
-		base.InitPoolMember(poolIndex);
 		InitializeParticleSystem();
 		InitializeSFX();
 	}
 	
-	public override void Spawn()
+	
+	protected override void OnSpawn()
 	{
-		base.Spawn();
 		gameObject.SetActive(true);
 		if (_playOnSpawn)
 		{
@@ -72,10 +78,16 @@ public class PFXMember : PoolMember
 		}
 	}
 	
-	public override void ReturnToPool()
+	
+	protected override void OnReturnedToPool()
 	{
-		base.ReturnToPool();
 		gameObject.SetActive(false);
+	}
+
+
+	protected override void OnRemovedFromPool()
+	{
+		GameObject.Destroy(gameObject);
 	}
 	
 	#endregion	// Pool Member
@@ -85,6 +97,7 @@ public class PFXMember : PoolMember
 	{
 		_particleSystem = instance;
 	}
+
 
 	void InitializeParticleSystem()
 	{
@@ -102,6 +115,7 @@ public class PFXMember : PoolMember
 		_isInitialized = true;
 	}
 	
+	
 	void InitializeSFX()
 	{
 		if (_playSFX)
@@ -117,6 +131,7 @@ public class PFXMember : PoolMember
 			}
 		}
 	}
+	
 	
 	/// <summary>
 	/// Plays the ParticleSystem and all the children ParticleSystems.
@@ -158,6 +173,7 @@ public class PFXMember : PoolMember
 		StartCoroutine(_particlesAliveCheckCoroutine);
 	}
 	
+	
 	/// <summary>
 	/// Stops the Particle System.
 	/// </summary>
@@ -176,6 +192,7 @@ public class PFXMember : PoolMember
 			ReturnToPool();
 		}
 	}
+	
 	
 	IEnumerator ParticlesAliveCheck()
 	{
@@ -198,4 +215,5 @@ public class PFXMember : PoolMember
 			ReturnToPool();
 		}
 	}
+
 }

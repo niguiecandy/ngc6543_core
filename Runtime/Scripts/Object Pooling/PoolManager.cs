@@ -6,12 +6,18 @@ public class PoolManager<T> : MonoBehaviour where T : PoolMember
 {
 	[Header("Pool Manager Base Info")]
 	
-	[SerializeField, NotInteractable] int _instancesCount;
+	[SerializeField, NotInteractable] int _instancesCount = 0;
 	
 	Dictionary<int, T> _members = new Dictionary<int, T>();
 	
 	Dictionary<int, List<T>> _instancesPool = new Dictionary<int, List<T>>();
 	
+	
+	/// <summary>
+	///  The current instances count.
+	/// </summary>
+	/// <value></value>
+	public int InstanceCount { get { return _instancesCount; } }
 	
 	void Awake()
 	{
@@ -148,5 +154,34 @@ public class PoolManager<T> : MonoBehaviour where T : PoolMember
 		// }
 		
 		return -1;
+	}
+	
+	
+	/// <summary>
+	/// It searches all instances that are 'IsAvailable' and removes them from the pool. It's up to PoolMember what to do when this happens.
+	/// </summary>
+	public void TrimExcess()
+	{
+		int removedCount = 0;
+		foreach(var member in _members)
+		{
+			var instances = _instancesPool[member.Key];
+			for (int i = 0; i < instances.Count; i++)
+			{
+				if (instances[i].IsAvailable)
+				{
+					removedCount++;
+					/*
+						PoolMember를 Pool에서부터 제거할 때 어떤 행동을 할지는 사용 예시마다 다를 수 있으므로, PoolMember에서 행동을 결정할 수 있도록 변경하였음.
+					*/
+					var instanceToRemove = instances[i];
+					instances.RemoveAt(i);
+					instanceToRemove.RemoveFromPool();
+					i--;
+				}
+			}
+		}
+		
+		_instancesCount -= removedCount;
 	}
 }
