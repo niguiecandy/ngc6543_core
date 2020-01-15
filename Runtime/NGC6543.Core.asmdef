@@ -1,14 +1,14 @@
 {
     "name": "NGC6543.Core",
     "references": [
-        "StackableDecorator"
+        "GUID:beb4b2651a4f74e05b07016afb07c2c9"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": []
 }

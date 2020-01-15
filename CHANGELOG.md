@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - `ScreenSleepTimeoutSetter`
+- asmdef 파일 `Use GUIDs` 옵션 체크함.
 
 ## [0.2.1] - 2019-12-12
 ### Added
