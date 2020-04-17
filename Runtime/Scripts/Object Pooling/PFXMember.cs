@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NGC6543;
@@ -111,7 +111,7 @@ public class PFXMember : PoolMember
 				return;
 			}
 		}
-		_particlesAliveCheckCoroutine = ParticlesAliveCheck();
+		// _particlesAliveCheckCoroutine = ParticlesAliveCheck();
 		_isInitialized = true;
 	}
 	
@@ -170,7 +170,7 @@ public class PFXMember : PoolMember
 			}
 		}
 		
-		StartCoroutine(_particlesAliveCheckCoroutine);
+		StartCoroutine(ParticlesAliveCheck());
 	}
 	
 	
