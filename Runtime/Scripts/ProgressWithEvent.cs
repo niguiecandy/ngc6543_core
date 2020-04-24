@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class ProgressWithEvent : MonoBehaviour
 {
+	[System.Serializable]
+	public class FloatEvent : UnityEvent<float> { }
 	/// <summary>
 	/// ProgressEvent
 	/// - rawThreshold : Event position as raw value. The events will be invoked based on this value.
@@ -77,6 +79,8 @@ public class ProgressWithEvent : MonoBehaviour
 	}
 	
 	public event System.Action<float> OnNormalizedProgressUpdate = (float a) => {};
+
+	public FloatEvent NormalizedProgressUpdated;
 	
 	#region UNITY_FRAMEWORK
 	
@@ -194,6 +198,7 @@ public class ProgressWithEvent : MonoBehaviour
 		}
 
 		OnNormalizedProgressUpdate(_normalizedProgress);
+		NormalizedProgressUpdated.Invoke(_normalizedProgress);
 		
 		// Score event
 		for (int i = 0; i < _progressEvents.Count; i++)
