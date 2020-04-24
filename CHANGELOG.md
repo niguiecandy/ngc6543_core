@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ScreenSleepTimeoutSetter` 추가.
 ### Changed
 - asmdef 파일 `Use GUIDs` 옵션 체크함.
+- `ProgressWithEvent` : `UnityEvent<float>` 추가
 
 ## [0.2.2] - 2020-04-17
 ### Fixed
