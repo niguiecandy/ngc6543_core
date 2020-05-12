@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - `ScreenSleepTimeoutSetter` 추가.
+- `PriorityQueue<T>` 자료구조 클래스 추가.
 ### Changed
 - asmdef 파일 `Use GUIDs` 옵션 체크함.
 - `ProgressWithEvent` : `UnityEvent<float>` 추가
